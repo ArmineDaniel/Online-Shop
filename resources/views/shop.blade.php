@@ -747,7 +747,7 @@
 
     <nav>
         <form action="{{route('home')}}" method="GET">
-        <input type="image" src="{{ URL::to('/') }}/logo.svg" alt="logo">
+        <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
         </form>
         <div class="nav_div">
             <a href="#about-us"> <p class="nav1">About us</p></a>
@@ -763,7 +763,7 @@
                 </form>
                 <div class="nav_search_space"></div>
                 <form action="{{route('cart')}}" method="GET">
-                <input type="image" src="{{ URL::to('/') }}/icons_cart.png" alt="" class="icons_cart">
+                <input type="image" src="{{ URL::to('/uploads') }}/icons_cart.png" alt="" class="icons_cart">
                 </form>
             </div>
     </nav>
@@ -780,14 +780,14 @@
                 <button class="order">
                     <p class="order_text">Order now</p>
                     <div class="header_shop">
-                        <img src="{{ URL::to('/') }}/shop-white.png" alt="" class="shop-white">
+                        <img src="{{ URL::to('/uploads') }}/shop-white.png" alt="" class="shop-white">
                     </div>
                 </button>
                 <a href="{{route('menu')}}" methods="GET" class="more">More Menu</a>
             </div>
         </form>
         <div class="header3">
-            <img src="{{ URL::to('/') }}/img-hero.png" alt="" class="img-hero">
+            <img src="{{ URL::to('/uploads') }}/img-hero.png" alt="" class="img-hero">
         </div>
     </section>
 
@@ -807,7 +807,7 @@
             <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST">
             <div class="coffee_card_1">
                 <div class="coffee_card_1_1">
-                    <img src={{asset('/'.$product->image)}} alt="" class="coffee_card_img">
+                    <img src="{{URL::to('/uploads')}}/{{$product->image}}" alt="" class="coffee_card_img">
                 </div>
                 <div class="card-display">
                     <div>
@@ -822,7 +822,7 @@
                     <div class="coffee_card_1_div">
                         <p class="price1">{{$product->price}} K</p>
                        <div class="coffee_card_shop">
-                            <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                            <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                            {{ csrf_field() }}
                        </div>
                     </div>
@@ -842,7 +842,7 @@
             <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST">
             <div class="coffee_card_1">
                 <div class="coffee_card_1_1">
-                    <img src={{asset('/'.$product->image)}} alt="" class="coffee_card_img">
+                    <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="coffee_card_img">
                 </div>
                 <div class="card_display">
                     <div>
@@ -857,7 +857,7 @@
                     <div>
                         <p class="price2">{{$product->price}} K</p>
                         <div class="coffee_card_shop2">
-                            <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                            <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                             {{ csrf_field() }}
                         </div>
                     </div>
@@ -875,7 +875,7 @@
             <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST">
             <div class="coffee_card_1">
                 <div class="coffee_card_1_1">
-                    <img src={{asset('/'.$product->image)}} alt="" class="coffee_card_img">
+                    <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="coffee_card_img">
                 </div>
                 <div class="card_display">
                     <div>
@@ -890,7 +890,7 @@
                     <div>
                         <p class="price2">{{$product->price}} K</p>
                         <div class="coffee_card_shop2">
-                            <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                            <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                             {{ csrf_field() }}
                         </div>
                     </div>
@@ -921,7 +921,7 @@
         ///////////////////// -->
 
         <div class="delivery_card_div">
-            <img src="{{ URL::to('/') }}/delivery1.png" alt="">
+            <img src="{{ URL::to('/uploads') }}/delivery1.png" alt="">
             <a href="{{route('menu')}}"> <p class="delivery_card_heading">choose your coffee</p> </a>
             <p class="delivery_card_text">there are 20+ coffees for you</p>
         </div>
@@ -933,7 +933,7 @@
         ///////////////////// -->
 
         <div class="delivery_card_div">
-            <img src="{{ URL::to('/') }}/delivery2.png" alt="">
+            <img src="{{ URL::to('/uploads') }}/delivery2.png" alt="">
             <p class="delivery_card_heading">we delivery it to you</p>
             <p class="delivery_card_text">Choose delivery service</p>
         </div>
@@ -945,7 +945,7 @@
         ///////////////////// -->
 
         <div class="delivery_card_div">
-            <img src="{{ URL::to('/') }}/delivery3.png" alt="">
+            <img src="{{ URL::to('/uploads') }}/delivery3.png" alt="">
             <p class="delivery_card_heading">Enjoy your coffee</p>
             <p class="delivery_card_text">Choose delivery service</p>
         </div>
@@ -956,7 +956,7 @@
 
 <section>
     <div class="about_section">
-        <img src="{{ URL::to('/') }}/about.png" alt="">
+        <img src="{{ URL::to('/uploads') }}/about.png" alt="">
     </div>
 
     <!-- ////////
@@ -965,7 +965,7 @@
 
     <div class="about_section_head">
         <div class="about_section_head_1">
-            <img src="{{ URL::to('/') }}/about-coffee.png" alt="" class="about_img">
+            <img src="{{ URL::to('/uploads') }}/about-coffee.png" alt="" class="about_img">
         </div>
         <div class="about1">
             <p id="about-us" class="about_text1">About us</p>
@@ -1002,7 +1002,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -1014,7 +1014,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" name="shopCart" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" name="shopCart" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1026,7 +1026,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -1037,7 +1037,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1049,7 +1049,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -1060,7 +1060,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1081,7 +1081,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div class="menu_left4">
@@ -1091,7 +1091,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1103,7 +1103,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -1114,7 +1114,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1126,7 +1126,7 @@
         @endphp
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -1137,7 +1137,7 @@
                     <p class="menu_text3">{{$product->price}} K</p>
                     <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST" class="menu_end">
                         <input type="hidden" name="{{$product->id}}hot_or_cold" value=" ">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" class="shop-white2">
                         {{ csrf_field() }}
                     </form>
                 </div>
@@ -1154,7 +1154,7 @@ About Us
 
 <section class="section4">
     <div>
-        <img src="{{ URL::to('/') }}/about.png" alt="" class="about_img">
+        <img src="{{ URL::to('/uploads') }}/about.png" alt="" class="about_img">
     </div>
     <div class="about2_2">
         <div>
@@ -1163,9 +1163,9 @@ About Us
         </div>
         <div class="menu_left2">
             <div>
-                <img src="{{ URL::to('/') }}/man1.png" alt="">
-                <img src="{{ URL::to('/') }}/man2.png" alt="" class="man">
-                <img src="{{ URL::to('/') }}/man3.png" alt="" class="man">
+                <img src="{{ URL::to('/uploads') }}/man1.png" alt="">
+                <img src="{{ URL::to('/uploads') }}/man2.png" alt="" class="man">
+                <img src="{{ URL::to('/uploads') }}/man3.png" alt="" class="man">
             </div>
         </div>
     </div>
@@ -1210,7 +1210,7 @@ About Us
 
 <footer>
     <div class="footer_div">
-        <img src="{{ URL::to('/') }}/footer.png" alt="">
+        <img src="{{ URL::to('/uploads') }}/footer.png" alt="">
     </div>
     <p class="footer_text">Subscribe to get 50% discount price</p>
     <form action="{{route('subscribe')}}" method="post">

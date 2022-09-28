@@ -144,7 +144,7 @@
 <body>
 <nav>
     <form action="{{route('home')}}" method="GET">
-        <input type="image" src="{{ URL::to('/') }}/logo.svg" alt="logo">
+        <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
     </form>
 </nav>
 
@@ -156,7 +156,7 @@
         <div class="menu">
             <div class="menu_head">
                 <div class="menu_img_div">
-                    <img src={{asset('/'.$product['image'] ?? '')}} alt="" class="menu_img">
+                    <img src="{{asset('/uploads')}}/{{$product['image'] ?? ''}}" alt="" class="menu_img">
                 </div>
                 <div class="menu_display">
                     <div>
@@ -167,11 +167,11 @@
                         <p class="menu_text3">{{$product['price'] ?? ''}}K</p>
                         <form action="{{route('confirmQuantity', ['product' => $product['id'], 'coffeeType' => $product['coffeeType'] ?? ''])}}" method="POST" class="quantity">
                         <input id="quantity" type="number" value="{{$product['quantity']}}" name="quantity" min="1" />
-                            <input type="image" formmethod="POST" src="{{ URL::to('/') }}/check.png" alt="Submit" name="confirm" class="confirm">
+                            <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/check.png" alt="Submit" name="confirm" class="confirm">
                             {{ csrf_field() }}
                         </form>
                         <form action="{{route('deleteFromCart', ['product' => $product['id'], 'coffeeType' => $product['coffeeType'] ?? ''])}}" method="POST" >
-                            <input type="image" formmethod="POST" src="{{ URL::to('/') }}/delete-icon.png" alt="Submit" name="delete" class="shop-white2">
+                            <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/delete-icon.png" alt="Submit" name="delete" class="shop-white2">
                             {{ csrf_field() }}
                         </form>
                     </div>

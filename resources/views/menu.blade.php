@@ -189,7 +189,7 @@
 <body>
 <nav>
     <form action="{{route('home')}}" method="GET">
-        <input type="image" src="{{ URL::to('/') }}/logo.svg" alt="logo">
+        <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
     </form>
     <div class="nav_div">
         @foreach($categories as $category)
@@ -203,7 +203,7 @@
         </form>
         <div class="nav_search_space"></div>
         <form action="{{route('cart')}}" method="GET">
-            <input type="image" src="{{ URL::to('/') }}/icons_cart.png" alt="" class="icons_cart">
+            <input type="image" src="{{ URL::to('/uploads') }}/icons_cart.png" alt="" class="icons_cart">
         </form>
     </div>
 </nav>
@@ -213,7 +213,7 @@
             <form action="{{route('addToCart', ['product' => $product->id])}}" method="POST">
         <div class="menu_head">
             <div class="menu_img_div">
-                <img src={{asset('/'.$product->image)}} alt="" class="menu_img">
+                <img src="{{asset('/uploads')}}/{{$product->image}}" alt="" class="menu_img">
             </div>
             <div class="menu_display">
                 <div>
@@ -233,7 +233,7 @@
                 <div class="menu_left1">
                     <p class="menu_text3">{{$product->price}}K</p>
                     <div class="menu_end">
-                        <input type="image" formmethod="POST" src="{{ URL::to('/') }}/shop-white.png" alt="Submit" name="shopCart" class="shop-white2">
+                        <input type="image" formmethod="POST" src="{{ URL::to('/uploads') }}/shop-white.png" alt="Submit" name="shopCart" class="shop-white2">
                         {{ csrf_field() }}
                     </div>
                 </div>

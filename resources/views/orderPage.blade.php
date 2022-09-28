@@ -116,7 +116,7 @@
 <body>
 <nav>
     <form action="{{route('home')}}" method="GET">
-        <input type="image" src="{{ URL::to('/') }}/logo.svg" alt="logo">
+        <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
     </form>
 </nav>
 
