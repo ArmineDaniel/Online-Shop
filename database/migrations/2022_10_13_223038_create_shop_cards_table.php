@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('credit_cards', function (Blueprint $table) {
+        Schema::create('shop_cards', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->string('ownerFirstName');
-            $table->string('ownerLastName');
-            $table->bigInteger('cardsNumbers')->unique();
-            $table->date('expirationDate');
-            $table->integer('cvv');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('credit_cards');
+        Schema::dropIfExists('shop_cards');
     }
 };

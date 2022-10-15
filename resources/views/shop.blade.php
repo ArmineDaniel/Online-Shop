@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafe Street</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
             width: 1440px;
             margin: auto;
-            font-family: 'Poppins';
+            font-family: 'Nunito', sans-serif;
         }
 
         header {
@@ -725,12 +726,48 @@
             margin-left: -40px;
             margin-top: 40px;
         }
+
+        .btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+
+        .dropdown {
+            position: absolute;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .btn:hover, .dropdown:hover .btn {
+            background-color: #0b7dda;
+        }
     </style>
 </head>
 <body>
-{{--@php--}}
-{{--    session_start();--}}
-{{--@endphp--}}
 <!-- //////////////////////
 *********************
          Header
@@ -744,7 +781,34 @@
             Navbar
     *********************
     ////////////////////////// -->
+    <div class="antialiased">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+{{--                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>--}}
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+        </div>
+    </div>
+    @auth
+        <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                    <button>Log Out</button>
+            </form>
+    </div>
+    @endauth
     <nav>
         <form action="{{route('home')}}" method="GET">
         <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
@@ -1212,12 +1276,12 @@ About Us
     <div class="footer_div">
         <img src="{{ URL::to('/uploads') }}/footer.png" alt="">
     </div>
-    <p class="footer_text">Subscribe to get 50% discount price</p>
-    <form action="{{route('subscribe')}}" method="post">
-        <input type="text" name="email" placeholder="Email address" class="email">
-        <button type="submit" formmethod="POST" class="order2">Order now</button>
-        {{ csrf_field() }}
-    </form>
+{{--    <p class="footer_text">Subscribe to get 50% discount price</p>--}}
+{{--    <form action="{{route('subscribe')}}" method="post">--}}
+{{--        <input type="text" name="email" placeholder="Email address" class="email">--}}
+{{--        <button type="submit" formmethod="POST" class="order2">Order now</button>--}}
+{{--        {{ csrf_field() }}--}}
+{{--    </form>--}}
 </footer>
 </body>
 </html>

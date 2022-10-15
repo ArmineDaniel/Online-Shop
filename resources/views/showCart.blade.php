@@ -143,6 +143,17 @@
 </head>
 <body>
 <nav>
+    @auth
+        <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button>Log Out</button>
+            </form>
+        </div>
+    @endauth
     <form action="{{route('home')}}" method="GET">
         <input type="image" src="{{ URL::to('/uploads') }}/logo.svg" alt="logo">
     </form>
@@ -182,13 +193,27 @@
     @endforeach
 </section>
 @if($count > 0)
-<form action="{{route('order')}}" method="GET">
-<div class="header2">
-    <button class="order">
-        <p class="order_text">Order now</p>
-    </button>
-</div>
-</form>
+
+    @if (Route::has('login'))
+    @auth
+        <form action="{{route('order')}}" method="GET">
+            <div class="header2">
+                <button class="order">
+                    <p class="order_text">Order now</p>
+                </button>
+            </div>
+        </form>
+        @else
+        <form action="{{route('register')}}" method="GET">
+            <div class="header2">
+                <button class="order">
+                    <p class="order_text">Order now</p>
+                </button>
+            </div>
+        </form>
+    @endauth
+    @endif
+
 @else
     <div class="empty_cart">
     <p>You don't have items in your cart yet.</p>

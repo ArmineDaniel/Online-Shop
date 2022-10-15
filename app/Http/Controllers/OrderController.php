@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditCard;
-use App\Models\Customer;
+use App\Models\User;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
@@ -27,47 +29,40 @@ class OrderController extends Controller
     }
     public function checkout(Request $request)
     {
-        $customers = Customer::all();
-        $customerExists = false;
-        foreach ($customers as $customer){
-            if($customer->email === $request->email){
-                $customerExists = true;
-                break;
+        try {
+            DB::beginTransaction();
+            $order = new Order();
+            $order->user_id = $request->user()->id;
+            $order->delivery_id = (int)$request->deliveryService;
+            $order->firstName = $request->firstName;
+            $order->lastName = $request->lastName;
+            $order->mobile = $request->phone;
+            $order->addressLine1 = $request->addressLine1;
+            $order->addressLine2 = $request->addressLine2 ?? null;
+            if ($request->user()->discount) {
+                $order->total_price = (float)$request->total_price * $request->user()->discount;
+            } else {
+                $order->total_price = (float)$request->total_price;
             }
-        }
-        if(!$customerExists){
-            $customer = new Customer();
-            $customer->email = $request->email;
-            $customer->discount = 1;
-            $customer->save();
-        }
-        else{
-            $customer = Customer::where('email',$request->email)->first();
-        }
-        $order = new Order();
-        $order->customer_id = $customer->id;
-        $order->delivery_id = (int)$request->deliveryService;
-        $order->firstName = $request->firstName;
-        $order->lastName = $request->lastName;
-        $order->mobile = $request->phone;
-        $order->addressLine1 = $request->addressLine1;
-        $order->addressLine2 = $request->addressLine2 ?? null;
-        $order->total_price = (float)$request->total_price * $customer->discount;
-        $order->save();
-        $newShop = new ShopController();
-        $cartProducts = $newShop->getProducts();
+            $order->save();
+            $newShop = new ShopController();
+            $cartProducts = $newShop->getProducts();
 
-        foreach ($cartProducts as $cartProduct){
-           $product = Product::find($cartProduct['id']);
-           if($cartProduct['coffeeType'] === 'cold' || $cartProduct['coffeeType'] === 'hot'){
-              $order->products()->attach($product, array('quantity' => $cartProduct['quantity'], 'coffeeType' => $cartProduct['coffeeType']));
-           }
-           else{
-              $order->products()->attach($product, array('quantity' => $cartProduct['quantity']));
-           }
-          $order->save();
+            foreach ($cartProducts as $cartProduct) {
+                $product = Product::find($cartProduct['id']);
+                if ($cartProduct['coffeeType'] === 'cold' || $cartProduct['coffeeType'] === 'hot') {
+                    $order->products()->attach($product, array('quantity' => $cartProduct['quantity'], 'coffeeType' => $cartProduct['coffeeType']));
+                } else {
+                    $order->products()->attach($product, array('quantity' => $cartProduct['quantity']));
+                }
+                $order->save();
+            }
+            DB::commit();
         }
-        setcookie('product_records', '', time() - 3600, '/');
+        catch (\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
+        }
         return view('payForOrder', compact('order'));
     }
 
@@ -83,7 +78,7 @@ class OrderController extends Controller
         }
         if(!$cardExists){
             $creditCard = new CreditCard();
-            $creditCard->customer_id = $order->customer_id;
+            $creditCard->user_id = $order->user_id;
             $creditCard->ownerFirstName = $request->ownerFirstName;
             $creditCard->ownerLastName = $request->ownerLastName;
             $creditCard->cardsNumbers = (int)$request->cardsNumbers;
@@ -93,6 +88,7 @@ class OrderController extends Controller
         }
             $order->status = 'paid';
               $order->save();
+        setcookie('product_records', '', time() - 3600, '/');
               return redirect()->route('home');
     }
 
@@ -101,28 +97,5 @@ class OrderController extends Controller
         $order->status = 'canceled';
         $order->save();
         return redirect()->route('home');
-    }
-
-    public function subscribe(Request $request)
-    {
-        $customers = Customer::all();
-        $customerExists = false;
-        foreach ($customers as $customer){
-            if($customer->email === $request->email){
-                $customerExists = true;
-                break;
-            }
-        }
-        if(!$customerExists){
-            $customer = new Customer();
-            $customer->email = $request->email;
-            $customer->discount = 0.5;
-        }
-        else{
-            $customer = Customer::where('email',$request->email)->first();
-            $customer->discount = 0.5;
-        }
-        $customer->save();
-        return Redirect::back();
     }
 }

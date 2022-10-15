@@ -14,13 +14,4 @@ class Customer extends Model
         'discount',
     ];
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-    public function credit_cards()
-    {
-        return $this->hasMany(CreditCard::class);
-    }
-
 }

@@ -130,9 +130,7 @@
     </select>
     </div>
 <footer>
-
-        <input type="text" name="email" placeholder="Email address" class="email" required>
-        <input type="text" name="firstName" placeholder="First Name" class="email" required>
+     <input type="text" name="firstName" placeholder="First Name" class="email" required>
         <input type="text" name="phone" placeholder="Phone" class="email" required>
         <input type="text" name="lastName" placeholder="Last Name" class="email" required>
         <input type="text" name="addressLine1" placeholder="Shipping address Line1" class="email" required>
